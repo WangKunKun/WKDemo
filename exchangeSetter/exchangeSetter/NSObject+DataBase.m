@@ -172,10 +172,34 @@ static void new_setter_long(id self, SEL _cmd, long long newValue)
 - (void)saveToLocal
 {
     
-    BOOL isCanSave = [self isShouldSave];
-    if (!isCanSave) {
+    NSMutableDictionary * mainKeyValue = [self isShouldSave];
+    if (!mainKeyValue) {
         return;
     }
+    
+    
+    NSString * existStr = [NSString stringWithFormat:@"select * from %@ where ",NSStringFromClass([self class])];
+    NSArray * mainKeys = [mainKeyValue allKeys];
+    for (NSUInteger i = 0; i < mainKeys.count ; i ++) {
+        existStr = [existStr stringByAppendingString:[NSString stringWithFormat:@"%@ = %@ ",mainKeys[i],[mainKeyValue objectForKey:mainKeys[i]]]];
+        existStr = [existStr stringByAppendingString: i < (mainKeys.count - 1) ? @"and " : @";"];
+    }
+    
+    NSLog(@"%@",existStr);
+    
+    //更新
+    NSString * updateStr = [NSString stringWithFormat:@"update ZYTaskModel set "];
+    NSArray * saveKeys = [self.saveKeyValue allKeys];
+    for (NSUInteger i = 0; i < saveKeys.count ; i ++) {
+        updateStr = [updateStr stringByAppendingString:[NSString stringWithFormat:@"%@ = %@ ",saveKeys[i],[self.saveKeyValue objectForKey:saveKeys[i]]]];
+        updateStr = [updateStr stringByAppendingString: i < (saveKeys.count - 1) ? @"," : @" where "];
+    }
+    for (NSUInteger i = 0; i < mainKeys.count ; i ++) {
+        updateStr = [updateStr stringByAppendingString:[NSString stringWithFormat:@"%@ = %@ ",mainKeys[i],[mainKeyValue objectForKey:mainKeys[i]]]];
+        updateStr = [updateStr stringByAppendingString: i < (mainKeys.count - 1) ? @"and " : @";"];
+    }
+    NSLog(@"%@",updateStr);
+
     //需要存储的时候，判断表存不存在，不存在则创建，存在则取数据更新
     NSLog(@"存储位置");
     
@@ -184,15 +208,16 @@ static void new_setter_long(id self, SEL _cmd, long long newValue)
     [self.saveKeyValue removeAllObjects];
 }
 
-- (BOOL)isShouldSave
+- (NSMutableDictionary *)isShouldSave
 {
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
     if (self.saveKeyValue.count <= 0) {
-        return NO;
+        return nil;
     }
     
     NSArray * mainKey = [[self class] DBMainKey];
     if (!mainKey || mainKey.count <= 0 ) {
-        return NO;
+        return nil;
     }
     NSArray <WKClassPropertyModel *> * arr = [WKClassManager getClassPropertysWithClass:[self class]];
     for (NSString * pn in mainKey)
@@ -204,24 +229,16 @@ static void new_setter_long(id self, SEL _cmd, long long newValue)
                 switch (model.type) {
                     case WKPropertyType_Object:
                     {
-                        id value = [self valueForKey:pn];
-                        if (value != nil)
-                        {
-                            id value = ((id (*)(id, SEL))(void *) objc_msgSend)((id)self, NSSelectorFromString (model.getterName));
-                            NSAssert(value, @"主键不能为空");
-                            [self.saveKeyValue setObject:value forKey:pn];
-                            
-                        }
-                        else
-                        {
-                            return NO;
-                        }
+                        id value = ((id (*)(id, SEL))(void *) objc_msgSend)((id)self, NSSelectorFromString (model.getterName));
+                        NSAssert(value, @"主键不能为空");
+                        [dict setObject:value forKey:pn];
+                        
                     }
                         break;
                     case WKPropertyType_CNumber:
                     {
                         long long num = ((bool (*)(id, SEL))(void *) objc_msgSend)((id)self, NSSelectorFromString (model.getterName));
-                        [self.saveKeyValue setObject:@(num) forKey:pn];
+                        [dict setObject:@(num) forKey:pn];
                     }
                         break;
                     default:
@@ -232,7 +249,7 @@ static void new_setter_long(id self, SEL _cmd, long long newValue)
             }
         }
     }
-    return YES;
+    return dict;
 }
 
 + (NSArray *)DBMainKey
