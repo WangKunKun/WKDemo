@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA811C361FE79D87003C2424 /* NSObject+DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811C351FE79D87003C2424 /* NSObject+DataBase.m */; };
+		EA811C3E1FE7BC84003C2424 /* KMDeallocBlockExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811C3C1FE7BC84003C2424 /* KMDeallocBlockExecutor.m */; };
+		EA811C3F1FE7BC84003C2424 /* NSObject+DealBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = EA811C3D1FE7BC84003C2424 /* NSObject+DealBlock.m */; };
 		EA9FC0071FAD70B400454D34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0061FAD70B400454D34 /* main.m */; };
 		EA9FC00A1FAD70B400454D34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0091FAD70B400454D34 /* AppDelegate.m */; };
 		EA9FC00D1FAD70B400454D34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC00C1FAD70B400454D34 /* ViewController.m */; };
@@ -16,9 +19,9 @@
 		EA9FC0201FAD70B400454D34 /* exchangeSetterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC01F1FAD70B400454D34 /* exchangeSetterTests.m */; };
 		EA9FC02B1FAD70B400454D34 /* exchangeSetterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC02A1FAD70B400454D34 /* exchangeSetterUITests.m */; };
 		EA9FC03A1FAD70C300454D34 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0391FAD70C300454D34 /* UserModel.m */; };
-		EA9FC0431FAD8A0600454D34 /* UserModel+Setter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0421FAD8A0600454D34 /* UserModel+Setter.m */; };
 		EA9FC0461FADA05300454D34 /* WKClassPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0451FADA05300454D34 /* WKClassPropertyModel.m */; };
-		EA9FC0491FADABEB00454D34 /* WKClassPropertyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0481FADABEB00454D34 /* WKClassPropertyManager.m */; };
+		EA9FC0491FADABEB00454D34 /* WKClassManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9FC0481FADABEB00454D34 /* WKClassManager.m */; };
+		EAA0EDA01FB4002F0075B2AF /* WKClassMethodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA0ED9F1FB4002F0075B2AF /* WKClassMethodModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA811C341FE79D87003C2424 /* NSObject+DataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DataBase.h"; sourceTree = "<group>"; };
+		EA811C351FE79D87003C2424 /* NSObject+DataBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DataBase.m"; sourceTree = "<group>"; };
+		EA811C3A1FE7BC84003C2424 /* KMDeallocBlockExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDeallocBlockExecutor.h; sourceTree = "<group>"; };
+		EA811C3B1FE7BC84003C2424 /* NSObject+DealBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DealBlock.h"; sourceTree = "<group>"; };
+		EA811C3C1FE7BC84003C2424 /* KMDeallocBlockExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMDeallocBlockExecutor.m; sourceTree = "<group>"; };
+		EA811C3D1FE7BC84003C2424 /* NSObject+DealBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DealBlock.m"; sourceTree = "<group>"; };
 		EA9FC0021FAD70B400454D34 /* exchangeSetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchangeSetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9FC0061FAD70B400454D34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA9FC0081FAD70B400454D34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,12 +66,12 @@
 		EA9FC02C1FAD70B400454D34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA9FC0381FAD70C200454D34 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		EA9FC0391FAD70C300454D34 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		EA9FC0411FAD8A0600454D34 /* UserModel+Setter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserModel+Setter.h"; sourceTree = "<group>"; };
-		EA9FC0421FAD8A0600454D34 /* UserModel+Setter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserModel+Setter.m"; sourceTree = "<group>"; };
 		EA9FC0441FADA05300454D34 /* WKClassPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKClassPropertyModel.h; sourceTree = "<group>"; };
 		EA9FC0451FADA05300454D34 /* WKClassPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKClassPropertyModel.m; sourceTree = "<group>"; };
-		EA9FC0471FADABEB00454D34 /* WKClassPropertyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKClassPropertyManager.h; sourceTree = "<group>"; };
-		EA9FC0481FADABEB00454D34 /* WKClassPropertyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKClassPropertyManager.m; sourceTree = "<group>"; };
+		EA9FC0471FADABEB00454D34 /* WKClassManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKClassManager.h; sourceTree = "<group>"; };
+		EA9FC0481FADABEB00454D34 /* WKClassManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKClassManager.m; sourceTree = "<group>"; };
+		EAA0ED9E1FB4002F0075B2AF /* WKClassMethodModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKClassMethodModel.h; sourceTree = "<group>"; };
+		EAA0ED9F1FB4002F0075B2AF /* WKClassMethodModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKClassMethodModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,10 +130,16 @@
 				EA9FC0391FAD70C300454D34 /* UserModel.m */,
 				EA9FC0441FADA05300454D34 /* WKClassPropertyModel.h */,
 				EA9FC0451FADA05300454D34 /* WKClassPropertyModel.m */,
-				EA9FC0471FADABEB00454D34 /* WKClassPropertyManager.h */,
-				EA9FC0481FADABEB00454D34 /* WKClassPropertyManager.m */,
-				EA9FC0411FAD8A0600454D34 /* UserModel+Setter.h */,
-				EA9FC0421FAD8A0600454D34 /* UserModel+Setter.m */,
+				EAA0ED9E1FB4002F0075B2AF /* WKClassMethodModel.h */,
+				EAA0ED9F1FB4002F0075B2AF /* WKClassMethodModel.m */,
+				EA9FC0471FADABEB00454D34 /* WKClassManager.h */,
+				EA9FC0481FADABEB00454D34 /* WKClassManager.m */,
+				EA811C3A1FE7BC84003C2424 /* KMDeallocBlockExecutor.h */,
+				EA811C3C1FE7BC84003C2424 /* KMDeallocBlockExecutor.m */,
+				EA811C3B1FE7BC84003C2424 /* NSObject+DealBlock.h */,
+				EA811C3D1FE7BC84003C2424 /* NSObject+DealBlock.m */,
+				EA811C341FE79D87003C2424 /* NSObject+DataBase.h */,
+				EA811C351FE79D87003C2424 /* NSObject+DataBase.m */,
 				EA9FC00E1FAD70B400454D34 /* Main.storyboard */,
 				EA9FC0111FAD70B400454D34 /* Assets.xcassets */,
 				EA9FC0131FAD70B400454D34 /* LaunchScreen.storyboard */,
@@ -293,12 +308,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9FC0491FADABEB00454D34 /* WKClassPropertyManager.m in Sources */,
+				EA811C3E1FE7BC84003C2424 /* KMDeallocBlockExecutor.m in Sources */,
+				EA9FC0491FADABEB00454D34 /* WKClassManager.m in Sources */,
+				EAA0EDA01FB4002F0075B2AF /* WKClassMethodModel.m in Sources */,
 				EA9FC00D1FAD70B400454D34 /* ViewController.m in Sources */,
 				EA9FC00A1FAD70B400454D34 /* AppDelegate.m in Sources */,
-				EA9FC0431FAD8A0600454D34 /* UserModel+Setter.m in Sources */,
+				EA811C3F1FE7BC84003C2424 /* NSObject+DealBlock.m in Sources */,
 				EA9FC0461FADA05300454D34 /* WKClassPropertyModel.m in Sources */,
 				EA9FC03A1FAD70C300454D34 /* UserModel.m in Sources */,
+				EA811C361FE79D87003C2424 /* NSObject+DataBase.m in Sources */,
 				EA9FC0071FAD70B400454D34 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +551,7 @@
 				EA9FC0311FAD70B400454D34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA9FC0321FAD70B400454D34 /* Build configuration list for PBXNativeTarget "exchangeSetterTests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +560,7 @@
 				EA9FC0341FAD70B400454D34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA9FC0351FAD70B400454D34 /* Build configuration list for PBXNativeTarget "exchangeSetterUITests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +569,7 @@
 				EA9FC0371FAD70B400454D34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

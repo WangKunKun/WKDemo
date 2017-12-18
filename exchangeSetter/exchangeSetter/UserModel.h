@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+DataBase.h"
 
 
 @interface UserModel : NSObject

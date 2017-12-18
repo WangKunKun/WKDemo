@@ -20,7 +20,7 @@
     for (NSString * str in attrs) {
         if([str hasPrefix:@"T"])//类型
         {
-            model.type = [str substringFromIndex:1];
+            model.typeName = [model getTypeNameWithStr:str];
         }
         if([str hasPrefix:@"S"])//自定义setter
         {
@@ -37,18 +37,55 @@
     }
     
     if (!model.setterName) {
-        
         NSString * header =  [[model.name substringToIndex:1] uppercaseString];
         NSString * footer = [model.name substringFromIndex:1];
         model.setterName = [NSString stringWithFormat:@"set%@%@:",header,footer];
     }
-    
     if (!model.getterName) {
         model.getterName = model.name;
     }
     
+    
     return model;
 }
+
+- (NSString *)getTypeNameWithStr:(NSString * )str
+{
+    NSString * typeName = str;
+    if ([typeName containsString:@"@"]) {
+        typeName = [typeName substringFromIndex:2];
+        typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        self.type = WKPropertyType_Object;
+    }else{
+        self.type = WKPropertyType_CNumber;
+        typeName = [typeName substringFromIndex:1];
+        const char * rawPropertyType = [typeName UTF8String];
+        if (strcmp(rawPropertyType, @encode(float)) == 0) {
+            typeName = @"float";
+        } else if (strcmp(rawPropertyType, @encode(int)) == 0) {
+            typeName = @"int";
+        } else if (strcmp(rawPropertyType, @encode(id)) == 0) {
+            typeName = @"id";
+        } else if (strcmp(rawPropertyType, @encode(double)) == 0){
+            typeName = @"double";
+        }else if(strcmp(rawPropertyType, @encode(long)) == 0){
+            typeName = @"long";
+        }else if(strcmp(rawPropertyType, @encode(unsigned int)) == 0){
+            typeName = @"NSUInteger";
+        }else if(strcmp(rawPropertyType, @encode(unsigned long)) == 0){
+            typeName = @"NSUInteger";
+        }
+        else if(strcmp(rawPropertyType, @encode(BOOL)) == 0){
+            typeName = @"BOOL";
+        }
+        else
+        {
+            self.type = WKPropertyType_Unknown;
+        }
+    }
+    return typeName;
+}
+
 
 - (NSString *)description
 {

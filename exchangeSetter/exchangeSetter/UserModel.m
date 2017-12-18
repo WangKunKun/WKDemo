@@ -9,8 +9,31 @@
 #import "UserModel.h"
 
 
+@interface UserModel ()
+
+@property (nonatomic, strong) NSString * userDetail;
+
+@end
 
 @implementation UserModel
 
+WKDataBaseSetter
+
+- (void)setUserID:(NSUInteger)userID
+{
+    _userID = userID;
+    NSLog(@"修改userid");
+}
+
+- (void)setUserName:(NSString *)userName
+{
+    _userName = userName;
+    NSLog(@"修改username");
+}
+
++ (NSArray *)DBMainKey
+{
+    return @[@"userID"];
+}
 
 @end

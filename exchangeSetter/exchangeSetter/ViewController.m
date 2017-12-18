@@ -8,9 +8,9 @@
 
 #import "ViewController.h"
 #import "UserModel.h"
-#import "UserModel+Setter.h"
-
 @interface ViewController ()
+
+@property (nonatomic, strong) UIView * aa;
 
 @end
 
@@ -19,13 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    UserModel * model = [UserModel new];
+    __block UserModel * model = [UserModel new];
     model.userID = 123;
     model.userName = @"aaa";
     model.isGirl = YES;
     NSLog(@"%@,%ld,%ld",model.userName,model.userID,model.isGirl);
-}
+    _aa = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    _aa.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_aa];
 
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        model = nil;
+    });
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

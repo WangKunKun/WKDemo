@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "WKClassPropertyModel.h"
-@interface WKClassPropertyManager : NSObject
+#import "WKClassMethodModel.h"
+@interface WKClassManager : NSObject
 
 + (NSArray <WKClassPropertyModel *> *)getClassPropertysWithClass:(Class)classs;
++ (NSArray <WKClassMethodModel *> *)getClassMethodsWithClass:(Class)classs;
 
 @end
