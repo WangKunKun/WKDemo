@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef void(^PYDictBlock)(NSDictionary<NSNumber *,NSMutableArray *>  *);
+typedef void(^PYDictBlock)(NSDictionary<NSNumber *,NSMutableArray *>  *,BOOL isJustChinese);
 
 @interface NSString (WKExtend)
 - (NSArray *)getAllRangeOfString:(NSString *)searchString;

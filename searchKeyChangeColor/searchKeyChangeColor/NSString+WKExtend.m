@@ -57,12 +57,18 @@
         NSMutableDictionary <NSNumber *,NSMutableArray *> * PYDict = [NSMutableDictionary dictionary];
         
         NSMutableString *result = [NSMutableString  string];
+        BOOL isJustChinese = YES;
         for (int i=0; i<[trimmedString length]; i++)
         {
             NSString * tmpStr = [trimmedString substringWithRange:NSMakeRange(i, 1)];
-            NSString * realStr = [tmpStr uppercaseString];
+            NSString * realStr = @"";
             if ([self IsChineseForString:tmpStr]) {
                 realStr = [[self transform:tmpStr] uppercaseString];
+            }
+            else
+            {
+                realStr = [tmpStr uppercaseString];
+                isJustChinese = NO;
             }
             [result appendString:realStr];
             
@@ -76,7 +82,7 @@
         }
         
         if (dictBlock) {
-            dictBlock(PYDict);
+            dictBlock(PYDict,isJustChinese);
         }
         return result;
     }

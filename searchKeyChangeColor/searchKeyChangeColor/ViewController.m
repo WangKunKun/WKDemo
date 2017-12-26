@@ -85,9 +85,7 @@ static NSString * str = @"爱上对方过后就哭了去玩儿推哦平QWERTYuio
             [att addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:253 / 255.0 green:100 / 255.0 blue:85 / 255.0 alpha:1] range:range];
         }
     }
-
-    self.textLabel.attributedText = att;
-    
+    self.textLabel.attributedText = att;    
 }
 
 

@@ -10,7 +10,7 @@
 
 @interface WKSearchStringManager : NSObject
 + (instancetype)sharedSearchStringManager;
-@property (nonatomic, copy) NSString * searchStr;
-@property (nonatomic, copy) NSString * sourceStr;
+@property (nonatomic, strong) NSString * searchStr;
+@property (nonatomic, strong) NSString * sourceStr;
 - (NSMutableArray <NSValue *> *)matching;
 @end
