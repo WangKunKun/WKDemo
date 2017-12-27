@@ -79,18 +79,14 @@
             return;
         }
         UIViewController * visiableVC = [AppDelegate getVisableVC];
-        //同一个vc 不弹出
-//        if ([className isEqualToString:NSStringFromClass([visiableVC class])]) {
-//            return;
-//        }
+
         
         Class class = NSClassFromString(className);
-        
+
         if (class ) {
-            
+            [dict removeObjectForKey:@"ClassName"];
             //健壮性检测，保证数据不被恶意修改
             if ([class respondsToSelector:@selector(restoreSceneKey)]) {
-                [dict removeObjectForKey:@"ClassName"];
                 NSArray * keys = [class restoreSceneKey];
                 for (NSString * key in keys) {
                     if ([dict objectForKey:key] == nil)
@@ -98,6 +94,19 @@
                         [self clearRestoreFile];
                         return;
                     }
+                }
+            }
+            //同一个vc  数据相同 不弹出
+            if ([className isEqualToString:NSStringFromClass([visiableVC class])]) {
+                NSArray * keys = [class restoreSceneKey];
+                BOOL isAllEqual = YES;
+                for (NSString * key in keys) {
+                    if (![[dict valueForKey:key] isEqual:[visiableVC valueForKey:key]]) {
+                        isAllEqual = NO;
+                    }
+                }
+                if (isAllEqual) {
+                    return;
                 }
             }
             id object = [[class alloc] init];
