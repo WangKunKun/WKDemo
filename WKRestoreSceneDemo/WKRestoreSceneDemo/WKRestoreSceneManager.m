@@ -106,6 +106,7 @@
                     }
                 }
                 if (isAllEqual) {
+                    [self clearRestoreFile];
                     return;
                 }
             }
