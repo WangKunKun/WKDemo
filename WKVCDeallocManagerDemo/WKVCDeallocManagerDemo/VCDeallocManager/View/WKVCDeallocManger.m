@@ -295,11 +295,9 @@
         _warnningLabel.textAlignment = NSTextAlignmentCenter;
         UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(warningLabelPan:)];
         [_warnningLabel addGestureRecognizer:pan];
-        
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterListVC)];
         [tap requireGestureRecognizerToFail:pan];
         [_warnningLabel addGestureRecognizer:tap];
-        
         [self hideWarnning];
     }
     return _warnningLabel;
