@@ -33,5 +33,5 @@
 + (void)releaseWithObject:(id)object;
 + (void)removeWithObject:(id)object;
 
-
++ (NSArray *)findRecordModelWithDeallocModel:(WKDeallocModel *)model;
 @end

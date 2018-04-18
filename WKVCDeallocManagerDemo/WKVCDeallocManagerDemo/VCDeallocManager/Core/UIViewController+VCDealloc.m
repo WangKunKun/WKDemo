@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import "NSObject+DealBlock.h"
 #import "WKVCDeallocManger.h"
-//#import "WKVCLifeCircleRecordManager.h"
+#import "WKVCLifeCircleRecordManager.h"
 
 static void *WKVCDeallocHelperKey;
 
@@ -49,6 +49,8 @@ static void *WKVCDeallocHelperKey;
 - (void)wk_viewDidLoad
 {
     [self wk_viewDidLoad];
+    [WKVCLifeCircleRecordManager addRecordWithVC:self methodName:[NSString stringWithFormat:@"%s",__func__]];
+
     //关键方法
     @synchronized (self) {
         @autoreleasepool {
@@ -66,25 +68,27 @@ static void *WKVCDeallocHelperKey;
 
 - (void)wk_viewWillAppear:(BOOL)animation
 {
+    [WKVCLifeCircleRecordManager addRecordWithVC:self methodName:[NSString stringWithFormat:@"%s",__func__]];
     [self wk_viewWillAppear:animation];
-    
 }
 
 - (void)wk_viewDidAppear:(BOOL)animation
 {
+    [WKVCLifeCircleRecordManager addRecordWithVC:self methodName:[NSString stringWithFormat:@"%s",__func__]];
     [WKVCDeallocManger addWithObject:self];
     [self wk_viewDidAppear:animation];
 }
 
 - (void)wk_viewWillDisappear:(BOOL)animation
 {
+    [WKVCLifeCircleRecordManager addRecordWithVC:self methodName:[NSString stringWithFormat:@"%s",__func__]];
     [self wk_viewWillDisappear:animation];
 }
 
 - (void)wk_viewDidDisappear:(BOOL)animation
 {
+    [WKVCLifeCircleRecordManager addRecordWithVC:self methodName:[NSString stringWithFormat:@"%s",__func__]];
     [self wk_viewDidDisappear:animation];
-
 }
 
 - (void)wk_dismissViewControllerAnimated:(BOOL)animation completion:(void (^ __nullable)(void))completion

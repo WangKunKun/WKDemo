@@ -10,7 +10,8 @@
 #import "WKVCDeallocManger.h"
 #import "WKVCDeallocCell.h"
 #import "WKPopImageView.h"
-@interface WKVCDeallocListVC ()<UITableViewDelegate,UITableViewDataSource>
+#import "WKLifeCircleRecordListVC.h"
+@interface WKVCDeallocListVC ()<UITableViewDelegate,UITableViewDataSource,WKVCDeallocCellDelegate>
 
 @property (nonatomic,strong) UITableView *mainTableView;
 @property (nonatomic,strong) NSMutableArray<WKDeallocModel *> *datasource;
@@ -73,14 +74,23 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WKVCDeallocCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WKVCDeallocCell"];
     cell.model = self.datasource[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WKDeallocModel * model = (WKDeallocModel *)[self.datasource objectAtIndex:indexPath.row];
-    self.popView.img = model.img;
-    [self.popView showInView:self.view isShow:YES];
+    if (model.releaseTime > 0) {
+        WKLifeCircleRecordListVC * vc = [WKLifeCircleRecordListVC new];
+        vc.model = model;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+    else
+    {
+        self.popView.img = model.img;
+        [self.popView showInView:self.view isShow:YES];
+    }
 
 
 }
@@ -128,7 +138,14 @@
 }
 
 
-
+- (void)clickWithImg:(UIImage *)img
+{
+    if (img) {
+        self.popView.img = img;
+        [self.popView showInView:self.view isShow:YES];
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

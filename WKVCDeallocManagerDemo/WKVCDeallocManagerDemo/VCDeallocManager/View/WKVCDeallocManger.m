@@ -9,7 +9,7 @@
 #import "WKVCDeallocManger.h"
 #import "AppDelegate.h"
 #import "WKVCDeallocListVC.h"
-//#import "WKVCLifeCircleRecordManager.h"
+#import "WKVCLifeCircleRecordManager.h"
 #import "UIView+WKSnapImage.h"
 #import "WKBaseView.h"
 
@@ -63,12 +63,12 @@
         className = model.className;
         address = model.address;
     }
-//    else if ([object isKindOfClass:[WKVCLifeCircleRecordModel class]])
-//    {
-//        WKVCLifeCircleRecordModel * model = (WKVCLifeCircleRecordModel *)object;
-//        className = model.className;
-//        address = model.address;
-//    }
+    else if ([object isKindOfClass:[WKVCLifeCircleRecordModel class]])
+    {
+        WKVCLifeCircleRecordModel * model = (WKVCLifeCircleRecordModel *)object;
+        className = model.className;
+        address = model.address;
+    }
     else
     {
         className = [object className];
@@ -181,6 +181,34 @@
     }
 
 #endif
+}
+
++ (NSArray *)findRecordModelWithDeallocModel:(WKDeallocModel *)model
+{
+    if (model.releaseTime <= 100) {
+        return nil;
+    }
+    NSArray * source = [WKVCLifeCircleRecordManager sharedVCLifeCircleRecordManager].models;
+    NSTimeInterval startTime = 0;
+    for (WKVCLifeCircleRecordModel * lcModel in source) {
+        if ([model isEqual:lcModel]) {
+            if ([lcModel.methodName containsString:@"viewDidLoad"])
+            {
+                startTime = lcModel.time;
+                break;
+            }
+        }
+    }
+    if (startTime > 0) {
+        NSMutableArray * result = [NSMutableArray array];
+        for (WKVCLifeCircleRecordModel * lcModel in source) {
+            if (lcModel.time >= startTime && lcModel.time <= model.releaseTime) {
+                [result addObject:lcModel];
+            }
+        }
+        return  result;
+    }
+    return nil;
 }
 
 

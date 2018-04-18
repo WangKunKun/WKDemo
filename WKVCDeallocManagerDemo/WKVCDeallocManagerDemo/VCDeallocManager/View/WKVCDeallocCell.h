@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 @class WKDeallocModel;
+@protocol WKVCDeallocCellDelegate <NSObject>
+
+- (void)clickWithImg:(UIImage *)img;
+
+@end
+
 @interface WKVCDeallocCell : UITableViewCell
 
 @property (nonatomic, strong) WKDeallocModel * model;
-
+@property (nonatomic, weak) id<WKVCDeallocCellDelegate> delegate;
 @end

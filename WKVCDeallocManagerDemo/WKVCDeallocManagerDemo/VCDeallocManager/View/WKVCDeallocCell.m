@@ -24,6 +24,8 @@
     self.dotView.layer.cornerRadius = 7.5;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.dotView.backgroundColor = [UIColor redColor];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgClick)];
+    [self.IV addGestureRecognizer:tap];
 }
 
 - (void)setModel:(WKDeallocModel *)model
@@ -40,6 +42,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (void)imgClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickWithImg:)]) {
+        [self.delegate clickWithImg:self.model.img];
+    }
 }
 
 @end
