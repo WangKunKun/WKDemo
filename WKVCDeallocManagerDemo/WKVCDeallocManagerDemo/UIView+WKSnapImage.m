@@ -6,9 +6,9 @@
 //  Copyright © 2018年 wangkun. All rights reserved.
 //
 
-#import "UIView+SnapImage.h"
+#import "UIView+WKSnapImage.h"
 
-@implementation UIView (SnapImage)
+@implementation UIView (WKSnapImage)
 
 - (UIImage *)snapshotImage
 {

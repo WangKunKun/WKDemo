@@ -6,10 +6,11 @@
 //  Copyright © 2018年 wangkun. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "WKBaseVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : WKBaseVC
 
+@property (nonatomic, assign) NSUInteger count;
 
 @end
 

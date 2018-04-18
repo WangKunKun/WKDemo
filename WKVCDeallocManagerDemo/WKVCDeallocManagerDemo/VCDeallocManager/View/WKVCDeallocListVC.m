@@ -16,10 +16,7 @@
 @property (nonatomic,strong) NSMutableArray<WKDeallocModel *> *datasource;
 @property (nonatomic,strong) WKPopImageView * popView;
 @property (nonatomic,strong) UIButton * bottomBtn;
-@property (nonatomic,strong) UIButton * leftBtn;
-@property (nonatomic,strong) UIButton * rightBtn;
-@property (nonatomic,strong) UILabel * titleLabel;
-@property (nonatomic,strong) UIView * line;
+
 
 @end
 
@@ -27,18 +24,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Do any additional setup after loading the view.
-    self.title = @"未释放的VC";
     self.view.backgroundColor = [UIColor whiteColor];
     self.datasource = [WKVCDeallocManger sharedVCDeallocManager].warnningModels;
-    [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.leftBtn];
-    [self.view addSubview:self.rightBtn];
-    [self.view addSubview:self.line];
+    
     [self.view addSubview:self.bottomBtn];
     [self.view addSubview:self.mainTableView];
     [self.mainTableView reloadData];
+    
+    BOOL isWarnning = [WKVCDeallocManger sharedVCDeallocManager].isWarnning;
+    self.nav.detailTitle = isWarnning ? @"关闭警告" : @"开启警告";
+    self.nav.title = @"未释放VC";
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +45,9 @@
 
 - (void)detailItemClick
 {
-
+    BOOL isWarnning = ![WKVCDeallocManger sharedVCDeallocManager].isWarnning;
+    [WKVCDeallocManger sharedVCDeallocManager].isWarnning = isWarnning;
+    self.nav.detailTitle = isWarnning ? @"关闭警告" : @"开启警告";
 }
 
 - (UITableView *)mainTableView{
@@ -115,61 +114,12 @@
     return _bottomBtn;
 }
 
-- (UIButton *)rightBtn
-{
-    if (!_rightBtn) {
-        
-        BOOL isWarnning = [WKVCDeallocManger sharedVCDeallocManager].isWarnning;
-        
-        _rightBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        [_rightBtn setTitle: isWarnning ? @"关闭警告" : @"开启警告" forState:(UIControlStateNormal)];
-        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_rightBtn setTitleColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1] forState:UIControlStateNormal];
-        [_rightBtn setTitleColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1] forState:UIControlStateSelected];
-        [_rightBtn addTarget:self action:@selector(changeWaringModel:) forControlEvents:(UIControlEventTouchUpInside)];
-        _rightBtn.frame = CGRectMake(SCREEN_WIDTH - 100, 20, 100, 44);
 
-    }
-    return _rightBtn;
-}
-
-- (UILabel *)titleLabel
-{
-    if (!_titleLabel) {
-        _titleLabel = [UILabel new];
-        _titleLabel.frame = CGRectMake(CGRectGetMidX(self.view.frame) - 50, 20, 100, 44);
-        _titleLabel.font = [UIFont systemFontOfSize:18];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _titleLabel;
-}
-
-- (UIButton *)leftBtn
-{
-    if (!_leftBtn) {
-        _leftBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        [_leftBtn setTitle:@"退出" forState:(UIControlStateNormal)];
-        _leftBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-
-        [_leftBtn setTitleColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1] forState:UIControlStateNormal];
-        [_leftBtn setTitleColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1] forState:UIControlStateSelected];
-        [_leftBtn addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
-        _leftBtn.frame = CGRectMake(0, 20, 60, 44);
-
-    }
-    return _leftBtn;
-}
-
-- (void)setTitle:(NSString *)title
-{
-    [super setTitle:title];
-    self.titleLabel.text = title;
-}
 
 - (void)changeModel:(UIButton *)sender
 {
-    sender.selected = !sender.isSelected;
-    self.title = [[sender currentTitle] stringByReplacingOccurrencesOfString:@"查看" withString:@""];
+    sender.selected = !sender.selected;
+    self.nav.title = sender.selected ? @"所有VC" : @"未释放VC";
     self.datasource = sender.selected ? [WKVCDeallocManger sharedVCDeallocManager].models : [WKVCDeallocManger sharedVCDeallocManager].warnningModels;
     [self.datasource sortUsingComparator:^NSComparisonResult(WKDeallocModel  *_Nonnull obj1, WKDeallocModel * _Nonnull obj2) {
         return obj1.isNeedRelease < obj2.isNeedRelease;
@@ -177,26 +127,8 @@
     [self.mainTableView reloadData];
 }
 
-- (void)back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
-- (void)changeWaringModel:(UIButton *)btn
-{
-    BOOL isWarnning = ![WKVCDeallocManger sharedVCDeallocManager].isWarnning;
-    [WKVCDeallocManger sharedVCDeallocManager].isWarnning = isWarnning;
-    [self.rightBtn setTitle: isWarnning ? @"关闭警告" : @"开启警告" forState:(UIControlStateNormal)];
-}
 
-- (UIView *)line
-{
-    if (!_line) {
-        _line = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 0.5)];
-        _line.backgroundColor = [UIColor blackColor];
-    }
-    return _line;
-}
 
 /*
 #pragma mark - Navigation

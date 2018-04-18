@@ -6,8 +6,8 @@
 //  Copyright © 2018年 zymk. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "WKBaseVC.h"
 
-@interface WKVCDeallocListVC : UIViewController
+@interface WKVCDeallocListVC : WKBaseVC
 
 @end

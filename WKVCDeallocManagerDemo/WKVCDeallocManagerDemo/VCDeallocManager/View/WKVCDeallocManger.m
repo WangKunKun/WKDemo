@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "WKVCDeallocListVC.h"
 //#import "WKVCLifeCircleRecordManager.h"
-#import "UIView+SnapImage.h"
+#import "UIView+WKSnapImage.h"
 #import "WKBaseView.h"
 
 
@@ -87,6 +87,8 @@
 @property (nonatomic, strong) NSMutableArray <WKDeallocModel *> * warnningModels;
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, strong) UILabel * warnningLabel;
+@property (nonatomic, strong) UIView * warnningView;
+
 @property (nonatomic, assign) CGRect * originFrame;
 
 @end
@@ -196,19 +198,19 @@
 
 - (void)showWarnning
 {
-    self.warnningLabel.hidden = NO;
+    self.warnningView.hidden = NO;
     [UIView animateWithDuration:0.25 animations:^{
-        self.warnningLabel.alpha = 1;
+        self.warnningView.alpha = 1;
     }];
 }
 
 - (void)hideWarnning
 {
     [UIView animateWithDuration:0.25 animations:^{
-        self.warnningLabel.alpha = 0;
+        self.warnningView.alpha = 0;
     } completion:^(BOOL finished) {
         if (finished) {
-            self.warnningLabel.hidden = YES;
+            self.warnningView.hidden = YES;
         }
     }];
 }
@@ -233,7 +235,7 @@
 
             break;
         case UIGestureRecognizerStateChanged:
-            self.warnningLabel.center = [pan locationInView:self.warnningLabel.superview];
+            self.warnningView.center = [pan locationInView:self.warnningView.superview];
             break;
         default:
             break;
@@ -284,23 +286,35 @@
         _warnningLabel = [UILabel new];
         _warnningLabel.font = [UIFont systemFontOfSize:10];
         _warnningLabel.textColor = [UIColor whiteColor];
-        [_warnningLabel setBackgroundColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1]];
-        UIView * keyWindow = [UIApplication sharedApplication].keyWindow;
-        [keyWindow addSubview:_warnningLabel];
-        _warnningLabel.frame = CGRectMake(0, NAVIGATION_STATUS_HEIGHT, 40, 40);
+
+        _warnningLabel.frame = CGRectMake(0, 0, 40, 40);
         _warnningLabel.text = @"Leak";
-        _warnningLabel.layer.cornerRadius = 20;
-        _warnningLabel.clipsToBounds = YES;
-        _warnningLabel.userInteractionEnabled = YES;
         _warnningLabel.textAlignment = NSTextAlignmentCenter;
-        UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(warningLabelPan:)];
-        [_warnningLabel addGestureRecognizer:pan];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterListVC)];
-        [tap requireGestureRecognizerToFail:pan];
-        [_warnningLabel addGestureRecognizer:tap];
+
         [self hideWarnning];
     }
     return _warnningLabel;
+}
+
+- (UIView *)warnningView
+{
+    if (!_warnningView) {
+        _warnningView = [UIView new];
+        _warnningView.frame = CGRectMake(0, NAVIGATION_STATUS_HEIGHT, 40, 40);
+        _warnningView.layer.cornerRadius = 20;
+        _warnningView.clipsToBounds = YES;
+        _warnningView.userInteractionEnabled = YES;
+        [_warnningView addSubview:self.warnningLabel];
+        [_warnningView setBackgroundColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1]];
+        UIView * keyWindow = [UIApplication sharedApplication].keyWindow;
+        [keyWindow addSubview:_warnningView];
+        UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(warningLabelPan:)];
+        [_warnningView addGestureRecognizer:pan];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enterListVC)];
+        [tap requireGestureRecognizerToFail:pan];
+        [_warnningView addGestureRecognizer:tap];
+    }
+    return _warnningView;
 }
 
 

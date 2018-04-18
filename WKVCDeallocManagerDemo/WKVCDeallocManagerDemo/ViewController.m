@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) ViewController * vc;
 @property (nonatomic, strong) UIButton * bottomBtn;
-@property (nonatomic,strong) UIButton * leftBtn;
 
 @end
 
@@ -21,27 +20,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self.view addSubview:self.leftBtn];
-    [self.view addSubview:self.bottomBtn];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.bottomBtn];
+    self.count = self.count;
 }
 
-- (UIButton *)leftBtn
+- (void)viewWillAppear:(BOOL)animated
 {
-    if (!_leftBtn) {
-        _leftBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        [_leftBtn setTitle:@"退出" forState:(UIControlStateNormal)];
-        [_leftBtn setTitleColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1] forState:UIControlStateNormal];
-        [_leftBtn setTitleColor:[UIColor colorWithRed:252 / 255.0 green:100 / 255.0 blue:84 / 255.0 alpha:1] forState:UIControlStateSelected];
-        [_leftBtn addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
-        _leftBtn.frame = CGRectMake(0, 20, 60, 44);
-    }
-    return _leftBtn;
+    [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)enterVC
+{
+    ViewController * vc = [[ViewController alloc] init];
+    self.vc = vc;
+    vc.count = self.count + 1;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)setCount:(NSUInteger)count
+{
+    _count = count;
+    self.nav.title = [NSString stringWithFormat:@"%ld",count];
 }
 
 - (UIButton *)bottomBtn
@@ -56,16 +56,5 @@
     return _bottomBtn;
 }
 
-- (void)enterVC
-{
-    ViewController * vc = [[ViewController alloc] init];
-    self.vc = vc;
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (void)back
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end

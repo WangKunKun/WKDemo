@@ -24,10 +24,6 @@
     _bgView = [[UIView alloc] init];
     [self addSubview:_bgView];
     
-    //建议使用约束  demo 则不引入三方库
-//    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.top.bottom.equalTo(self);
-//    }];
     self.bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     
     
@@ -82,10 +78,6 @@
         [self.parentView addSubview:self];
         self.frame = self.parentView.bounds;
         self.bgView.frame = self.bounds;
-        //建议约束
-//        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.top.bottom.equalTo(self.parentView);
-//        }];
         [self viewWillShow];
         if (self.autoDissmissDelay > 0) {
             [self performSelector:@selector(dismiss) withObject:nil afterDelay:self.autoDissmissDelay];

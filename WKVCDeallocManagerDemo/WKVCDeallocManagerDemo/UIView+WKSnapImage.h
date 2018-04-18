@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (SnapImage)
+@interface UIView (WKSnapImage)
 
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 
