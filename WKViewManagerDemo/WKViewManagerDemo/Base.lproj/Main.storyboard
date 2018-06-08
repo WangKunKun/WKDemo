@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U9c-tO-ewA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home PageVC-->
+        <scene sceneID="hSe-SH-TzJ">
+            <objects>
+                <viewController id="U9c-tO-ewA" customClass="HomePageVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DK5-tO-HPC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-Jo-F57">
+                                <rect key="frame" x="145" y="316.5" width="84" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="ShowView">
+                                    <color key="titleColor" red="1" green="0.43529411759999997" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showView:" destination="U9c-tO-ewA" eventType="touchUpInside" id="5cm-7n-kn4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-8W-buS">
+                                <rect key="frame" x="150" y="400" width="74" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="进入详情">
+                                    <color key="titleColor" red="1" green="0.43529411759999997" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SnC-fg-yHT" kind="modal" id="Crb-G9-aSr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首页" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfp-R7-jKi">
+                                <rect key="frame" x="168" y="31" width="39" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JyF-8W-buS" firstAttribute="centerX" secondItem="ebM-Jo-F57" secondAttribute="centerX" id="1kv-pj-t7R"/>
+                            <constraint firstItem="ebM-Jo-F57" firstAttribute="centerX" secondItem="DK5-tO-HPC" secondAttribute="centerX" id="8gx-dT-gbS"/>
+                            <constraint firstItem="Tfp-R7-jKi" firstAttribute="centerX" secondItem="DK5-tO-HPC" secondAttribute="centerX" id="D41-2E-dJ4"/>
+                            <constraint firstItem="ebM-Jo-F57" firstAttribute="centerY" secondItem="DK5-tO-HPC" secondAttribute="centerY" id="WJV-oz-MrE"/>
+                            <constraint firstItem="JyF-8W-buS" firstAttribute="top" secondItem="ebM-Jo-F57" secondAttribute="bottom" constant="49.5" id="klJ-c0-Yqb"/>
+                            <constraint firstItem="Tfp-R7-jKi" firstAttribute="top" secondItem="DK5-tO-HPC" secondAttribute="top" constant="31" id="tR4-V8-q8I"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IMN-e9-qzn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uMP-ad-YCE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="410" y="72"/>
+        </scene>
+        <!--Detail PageVC-->
+        <scene sceneID="vjP-H4-Ked">
+            <objects>
+                <viewController id="SnC-fg-yHT" customClass="DetailPageVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3HK-rR-N1e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详情页" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvK-Hl-gig">
+                                <rect key="frame" x="158" y="31" width="59" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3r-tH-LVk">
+                                <rect key="frame" x="145" y="316.5" width="84" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="ShowView">
+                                    <color key="titleColor" red="1" green="0.43529411759999997" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showView:" destination="SnC-fg-yHT" eventType="touchUpInside" id="PTP-YH-yIO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ka2-DY-vRK">
+                                <rect key="frame" x="150" y="392" width="74" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="返回首页">
+                                    <color key="titleColor" red="1" green="0.43529411759999997" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss:" destination="SnC-fg-yHT" eventType="touchUpInside" id="KlZ-D0-fNA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W3r-tH-LVk" firstAttribute="centerX" secondItem="3HK-rR-N1e" secondAttribute="centerX" id="A7a-cJ-FjQ"/>
+                            <constraint firstItem="lvK-Hl-gig" firstAttribute="top" secondItem="3HK-rR-N1e" secondAttribute="top" constant="31" id="F1t-8S-i0n"/>
+                            <constraint firstItem="Ka2-DY-vRK" firstAttribute="top" secondItem="W3r-tH-LVk" secondAttribute="bottom" constant="41.5" id="FN6-T0-CiO"/>
+                            <constraint firstItem="Ka2-DY-vRK" firstAttribute="centerX" secondItem="W3r-tH-LVk" secondAttribute="centerX" id="uvV-Lc-BuD"/>
+                            <constraint firstItem="W3r-tH-LVk" firstAttribute="centerY" secondItem="3HK-rR-N1e" secondAttribute="centerY" id="xB0-jV-SDw"/>
+                            <constraint firstItem="lvK-Hl-gig" firstAttribute="centerX" secondItem="3HK-rR-N1e" secondAttribute="centerX" id="y2X-zU-PPZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4K7-m6-19t"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuU-ML-tQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1225" y="83"/>
+        </scene>
+    </scenes>
+</document>
