@@ -26,6 +26,7 @@
         make.edges.equalTo(self.contentView);
     }];
     
+    //TODO contentview的高度必须设置
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.centerY.equalTo(self).offset(SCREEN_HEIGHT);

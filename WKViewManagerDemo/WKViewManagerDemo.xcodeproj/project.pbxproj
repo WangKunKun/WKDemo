@@ -56,6 +56,7 @@
 		D46D2269836184602866882C /* libPods-WKViewManagerDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WKViewManagerDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44933173CDE0A1C65D5FB19 /* libPods-WKViewManagerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WKViewManagerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4EB2B5C577452671C9AE16E /* Pods-WKViewManagerDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WKViewManagerDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WKViewManagerDemoTests/Pods-WKViewManagerDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EAE0C0D621CC7F680099F4C7 /* WKViewManagerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKViewManagerHeader.h; sourceTree = "<group>"; };
 		EAF6440020CA87760045D12F /* WKViewManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKViewManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAF6440320CA87760045D12F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EAF6440420CA87760045D12F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -213,6 +214,7 @@
 				EAF6443820CA878E0045D12F /* WKPopBaseView.m */,
 				EAF6443D20CA878F0045D12F /* WKViewManager.h */,
 				EAF6443620CA878E0045D12F /* WKViewManager.m */,
+				EAE0C0D621CC7F680099F4C7 /* WKViewManagerHeader.h */,
 			);
 			name = Base;
 			sourceTree = "<group>";

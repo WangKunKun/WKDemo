@@ -26,7 +26,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString * msg;//could be 方法名，或者其他
 @property (nonatomic, strong) NSArray  * threadStack;
 @property (nonatomic, assign) NSTimeInterval time;
-
 @property (nonatomic, strong, readonly) NSString * deviceType;
 @property (nonatomic, strong, readonly) NSString * systemVersion;
 
