@@ -39,12 +39,21 @@
     if (anObject) {
         [self arrayM_addObject:anObject];
     }
+    else
+    {
+        [self sendCrashInfoWithMsg:[NSString stringWithUTF8String:__func__] type:(WKCrashType_Container)];
+    }
 }
 
 - (void)arrayM_insertObject:(id)anObject atIndex:(NSUInteger)index
 {
-    if (anObject) {
+    //小于等于 必须
+    if (anObject && index <= self.count) {
         [self arrayM_insertObject:anObject atIndex:index];
+    }
+    else
+    {
+        [self sendCrashInfoWithMsg:[NSString stringWithUTF8String:__func__] type:(WKCrashType_Container)];
     }
 }
 
